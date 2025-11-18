@@ -1,0 +1,83 @@
+[
+  {
+    "id": "srv-01",
+    "nome": "Corte Feminino",
+    "preco": 45.00,
+    "duracao": "45min",
+    "categoria": "cabelos",
+    "imagem": "img/servicos/corte-feminino.jpg"
+  },
+  {
+    "id": "srv-02",
+    "nome": "Corte Masculino",
+    "preco": 35.00,
+    "duracao": "30min",
+    "categoria": "cabelos",
+    "imagem": "img/servicos/corte-masculino.jpg"
+  },
+  {
+    "id": "srv-03",
+    "nome": "Escova e Penteado",
+    "preco": 60.00,
+    "duracao": "50min",
+    "categoria": "cabelos",
+    "imagem": "img/servicos/escova.jpg"
+  },
+  {
+    "id": "srv-04",
+    "nome": "Coloração e Luzes",
+    "preco": 90.00,
+    "duracao": "90min",
+    "categoria": "cabelos",
+    "imagem": "img/servicos/coloracao.jpg"
+  },
+  {
+    "id": "srv-05",
+    "nome": "Hidratação Capilar",
+    "preco": 70.00,
+    "duracao": "60min",
+    "categoria": "tratamentos",
+    "imagem": "img/servicos/hidratacao.jpg"
+  },
+  {
+    "id": "srv-06",
+    "nome": "Manicure & Pedicure",
+    "preco": 50.00,
+    "duracao": "60min",
+    "categoria": "unhas",
+    "imagem": "img/servicos/manicure.jpg"
+  },
+  {
+    "id": "srv-07",
+    "nome": "Alongamento de Unhas em Gel",
+    "preco": 120.00,
+    "duracao": "120min",
+    "categoria": "unhas",
+    "imagem": "img/servicos/unhas-gel.jpg"
+  },
+  {
+    "id": "srv-08",
+    "nome": "Design de Sobrancelhas",
+    "preco": 30.00,
+    "duracao": "30min",
+    "categoria": "estetica",
+    "imagem": "img/servicos/sobrancelhas.jpg"
+  },
+  {
+    "id": "srv-09",
+    "nome": "Depilação Completa",
+    "preco": 90.00,
+    "duracao": "90min",
+    "categoria": "estetica",
+    "imagem": "img/servicos/depilacao.jpg"
+  },
+
+  {
+    "id": "srv-12",
+    "nome": "Limpeza de Pele",
+    "preco": 70.00,
+    "duracao": "60min",
+    "categoria": "estetica",
+    "imagem": "img/servicos/limpeza-pele.jpg"
+  }
+]

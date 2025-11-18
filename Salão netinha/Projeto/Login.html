@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salão da Netinha - Login</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="StyleLogin.css">
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="grid">
+        <div class="col-6">
+          <a class="brand" href="index.html">
+            <img src="./img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-logo">
+            <strong>Salão da Netinha</strong>
+          </a>
+        </div>
+        <div class="col-6" style="text-align:right">
+          <a href="SobreNos.html" class="btn" id="btn-sobrenos">Sobre nós</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="box">
+    <h2 id="formTitle">Login</h2>
+    
+    <!-- Formulário de Login -->
+    <div id="loginForm">
+      <input id="emailLogin" placeholder="E-mail">
+      <input id="senhaLogin" type="password" placeholder="Senha">
+      <button onclick="login()">Entrar</button>
+      <div class="toggle" onclick="mostrarCadastro()">Não tem conta? Cadastre-se</div>
+    </div>
+    
+    <!-- Formulário de Cadastro -->
+    <div id="cadastroForm" style="display:none">
+      <input id="nomeCadastro" placeholder="Nome completo">
+      <input id="emailCadastro" placeholder="E-mail">
+      <input id="senhaCadastro" type="password" placeholder="Senha">
+
+      <!-- Login com Google -->
+      <div id="g_id_onload"
+        data-client_id=""
+        data-context="signin"
+        data-callback="handleCredentialResponse"
+        data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin" data-type="standard"></div>
+
+      <select id="tipoUsuario" style="display:none">
+        <option value="cliente">Cliente</option>
+      </select>
+      <button onclick="cadastrar()">Cadastrar</button>
+      <div class="toggle" onclick="mostrarLogin()">Já tem conta? Entrar</div>
+    </div>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <div class="grid">
+        <div class="col-6">
+          <strong>Salão da Netinha</strong>
+          <div class="note">CNPJ 00.000.000/0001-00 • Rua das Rosas, 45 — Centro</div>
+          <div class="note">Atendimento: seg–sáb 09:00–19:00</div>
+  </footer>
+
+  <script src="login.js"></script>
+</body>
+</html>
