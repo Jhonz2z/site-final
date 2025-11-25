@@ -1,9 +1,20 @@
+// =============================================
+// API DE REGISTRO - AUTENTICAÇÃO JWT
+// =============================================
+// ATENÇÃO: Tokens, senhas e chaves secretas devem SEMPRE
+// estar configurados no arquivo .env, NUNCA no código-fonte.
+// Variáveis necessárias: JWT_SECRET, MONGODB_URI
+// =============================================
+
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { connectToDatabase } = require('./db');
 
-// Secret para JWT (será configurado nas variáveis de ambiente)
-const JWT_SECRET = process.env.JWT_SECRET || 'seu-secret-super-seguro-aqui-mude-isso';
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  console.error('❌ JWT_SECRET não configurado nas variáveis de ambiente');
+}
 
 module.exports = async (req, res) => {
   // CORS

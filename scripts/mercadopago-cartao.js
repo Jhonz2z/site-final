@@ -1,12 +1,23 @@
 // =============================================
 // INTEGRAÇÃO MERCADO PAGO - CARTÃO DE CRÉDITO/DÉBITO
 // =============================================
+// ATENÇÃO: Chaves e tokens devem SEMPRE estar configurados
+// via variáveis de ambiente ou fornecidos pelo backend.
+// A PUBLIC_KEY deve ser obtida do backend ou configurada
+// em um arquivo de configuração seguro.
+// =============================================
 
-// Usar a mesma API_URL já declarada em mercadopago.js
-// const API_URL já existe no escopo global
+// PUBLIC_KEY do Mercado Pago
+// IMPORTANTE: Configure esta chave obtendo-a do seu painel do Mercado Pago
+// ou solicite ao backend via endpoint seguro.
+// Nunca comite chaves de produção no repositório.
+let PUBLIC_KEY = null;
 
-// IMPORTANTE: Cole sua PUBLIC KEY aqui
-const PUBLIC_KEY = 'APP_USR-80c8ff46-8eb0-4f45-961f-06040b561fc5';
+// Tenta obter a PUBLIC_KEY de variável global ou do window
+// O backend ou um script de configuração deve definir window.MERCADOPAGO_PUBLIC_KEY
+if (typeof window !== 'undefined' && window.MERCADOPAGO_PUBLIC_KEY) {
+  PUBLIC_KEY = window.MERCADOPAGO_PUBLIC_KEY;
+}
 
 let mp = null;
 let cardForm = null;
