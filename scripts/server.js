@@ -23,10 +23,11 @@ const ACCESS_TOKEN = process.env.MERCADOPAGO_ACCESS_TOKEN;
 
 if (!ACCESS_TOKEN) {
   console.error('❌ MERCADOPAGO_ACCESS_TOKEN não configurado nas variáveis de ambiente');
+  throw new Error('MERCADOPAGO_ACCESS_TOKEN não configurado. Configure nas variáveis de ambiente.');
 }
 
 const client = new MercadoPagoConfig({
-  accessToken: ACCESS_TOKEN || '',
+  accessToken: ACCESS_TOKEN,
   options: { timeout: 5000 }
 });
 

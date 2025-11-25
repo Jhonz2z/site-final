@@ -27,8 +27,8 @@ let cardForm = null;
 // =============================================
 function inicializarMercadoPago() {
   if (!PUBLIC_KEY || PUBLIC_KEY === 'SUA_PUBLIC_KEY_AQUI') {
-    console.warn('⚠️ Public Key não configurada! Configure no arquivo mercadopago-cartao.js');
-    return;
+    console.warn('⚠️ Public Key não configurada! Defina window.MERCADOPAGO_PUBLIC_KEY antes de carregar este script.');
+    return false;
   }
 
   try {

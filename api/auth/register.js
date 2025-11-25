@@ -14,6 +14,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 if (!JWT_SECRET) {
   console.error('❌ JWT_SECRET não configurado nas variáveis de ambiente');
+  throw new Error('JWT_SECRET não configurado. Configure nas variáveis de ambiente.');
 }
 
 module.exports = async (req, res) => {
