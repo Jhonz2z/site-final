@@ -1,6 +1,10 @@
 // =============================================
 // SERVIDOR BACKEND - INTEGRAÇÃO MERCADO PAGO
 // =============================================
+// ATENÇÃO: Tokens, senhas e chaves secretas devem SEMPRE
+// estar configurados no arquivo .env, NUNCA no código-fonte.
+// Variáveis necessárias: MERCADOPAGO_ACCESS_TOKEN
+// =============================================
 
 const express = require('express');
 const cors = require('cors');
@@ -14,11 +18,16 @@ app.use(cors());
 app.use(express.json());
 
 // CONFIGURAR MERCADO PAGO
-// IMPORTANTE: Substitua pelo seu Access Token
-// USE TEST TOKEN para testar (começa com TEST-...)
-// USE ACCESS TOKEN de produção somente quando sua conta estiver ativada
+// Access Token deve ser configurado via variável de ambiente
+const ACCESS_TOKEN = process.env.MERCADOPAGO_ACCESS_TOKEN;
+
+if (!ACCESS_TOKEN) {
+  console.error('❌ MERCADOPAGO_ACCESS_TOKEN não configurado nas variáveis de ambiente');
+  throw new Error('MERCADOPAGO_ACCESS_TOKEN não configurado. Configure nas variáveis de ambiente.');
+}
+
 const client = new MercadoPagoConfig({
-  accessToken: 'APP_USR-8179193987311894-112512-ba877f84e8e8a5b82dd5d639da4f8e48-1170066187',
+  accessToken: ACCESS_TOKEN,
   options: { timeout: 5000 }
 });
 

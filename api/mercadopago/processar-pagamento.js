@@ -1,6 +1,10 @@
 // =============================================
 // API BACKEND - PROCESSAR PAGAMENTO MERCADO PAGO
 // =============================================
+// ATENÇÃO: Tokens, senhas e chaves secretas devem SEMPRE
+// estar configurados no arquivo .env, NUNCA no código-fonte.
+// Variáveis necessárias: MERCADOPAGO_ACCESS_TOKEN
+// =============================================
 
 const mercadopago = require('mercadopago');
 
