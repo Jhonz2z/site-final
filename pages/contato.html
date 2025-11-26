@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato — Salão da Netinha</title>
+  <meta name="description" content="Entre em contato com o Salão da Netinha. Endereço, telefone, WhatsApp e horário de funcionamento."/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../styles/contato.css">
+  <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="brand" aria-label="Página inicial">
+        <span class="brand-logo" aria-hidden="true">
+          <img src="../img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
+        </span>
+        <span>Salão da Netinha</span>
+      </a>
+      
+      <!-- Menu hambúrguer -->
+      <button class="menu-hamburger" id="menu-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar-menu" id="sidebar-menu">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-bars"></i> Menu</h3>
+        <button class="sidebar-close" id="sidebar-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-body">
+        <a href="../index.html" class="sidebar-item">
+          <i class="fas fa-home"></i>
+          <span>Início</span>
+        </a>
+        
+        <a href="servicos.html" class="sidebar-item">
+          <i class="fas fa-cut"></i>
+          <span>Nossos Serviços</span>
+        </a>
+        
+        <a href="index.html#agendamento" class="sidebar-item">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Agendar Horário</span>
+        </a>
+        
+        <a href="perfil.html" class="sidebar-item">
+          <i class="fas fa-user"></i>
+          <span>Meu Perfil</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="Sobrenos.html" class="sidebar-item">
+          <i class="fas fa-info-circle"></i>
+          <span>Sobre Nós</span>
+        </a>
+        
+        <a href="contato.html" class="sidebar-item active">
+          <i class="fas fa-phone"></i>
+          <span>Contato</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="javascript:void(0)" class="sidebar-item sidebar-item-danger" id="sidebar-sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção Contato -->
+  <main class="container contato-content">
+    <h1 class="page-title">Contato</h1>
+    <p class="intro-text">
+      Estamos sempre prontos para atendê-la! Entre em contato conosco para agendar seus serviços 
+      ou esclarecer qualquer dúvida. Sua beleza e bem-estar são nossa prioridade.
+    </p>
+
+    <div class="contato-grid">
+      <!-- Informações de Contato -->
+      <div class="contato-info">
+        <h2 class="section-title">Informações de Contato</h2>
+        
+        <div class="contato-item">
+          <i class="fas fa-map-marker-alt contato-icon"></i>
+          <div>
+            <h3>Endereço</h3>
+            <p>Rua Comari, 250<br>Campo Grande </p>
+          </div>
+        </div>
+
+        <div class="contato-item">
+          <i class="fas fa-phone contato-icon"></i>
+          <div>
+            <h3>Telefone</h3>
+            <p><a href="tel:+5521969860195">(21) 96986-0195</a></p>
+          </div>
+        </div>
+
+        <div class="contato-item">
+          <i class="fab fa-whatsapp contato-icon whatsapp-icon"></i>
+          <div>
+            <h3>WhatsApp</h3>
+            <p>
+              <a href="https://wa.me/5521969860195?text=Olá! Gostaria de agendar um horário no Salão da Netinha." 
+                 target="_blank" class="whatsapp-link">
+                (21) 96986-0195
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="contato-item">
+          <i class="fas fa-envelope contato-icon"></i>
+          <div>
+            <h3>E-mail</h3>
+            <p><a href="mailto:contato@salaodanetinha.com.br">contato@salaodanetinha.com.br</a></p>
+          </div>
+        </div>
+
+        <div class="contato-item">
+          <i class="fas fa-clock contato-icon"></i>
+          <div>
+            <h3>Horário de Funcionamento</h3>
+            <p>
+              <strong>Segunda a Sábado:</strong> 09:00 - 19:00<br>
+              <strong>Domingo:</strong> Fechado
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulário de Contato -->
+      <div class="contato-form">
+        <h2 class="section-title">Envie uma Mensagem</h2>
+        
+        <form id="form-contato" class="form-contato">
+          <div class="form-group">
+            <label for="nome-contato">Nome Completo</label>
+            <input type="text" id="nome-contato" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email-contato">E-mail</label>
+              <input type="email" id="email-contato" required>
+            </div>
+            <div class="form-group">
+              <label for="telefone-contato">Telefone</label>
+              <input type="tel" id="telefone-contato" placeholder="(21) 96986-0195">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="assunto-contato">Assunto</label>
+            <select id="assunto-contato" required>
+              <option value="">Selecione um assunto</option>
+              <option value="agendamento">Agendamento</option>
+              <option value="duvidas">Dúvidas sobre serviços</option>
+              <option value="precos">Informações sobre preços</option>
+              <option value="reclamacao">Reclamação</option>
+              <option value="elogio">Elogio</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="mensagem-contato">Mensagem</label>
+            <textarea id="mensagem-contato" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-paper-plane"></i>
+              Enviar Mensagem
+            </button>
+            <button type="reset" class="btn btn-secondary">
+              <i class="fas fa-undo"></i>
+              Limpar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mapa de Localização -->
+    <div class="mapa-container" style="margin-top: 60px;">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 30px;">
+        <i class="fas fa-map-marked-alt"></i> Nossa Localização
+      </h2>
+      <div class="mapa-wrapper">
+        <!-- Google Maps Embed -->
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.0899842234346!2d-43.56825!3d-22.89917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUzJzU3LjAiUyA0M8KwMzQnMDUuNyJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+          width="100%" 
+          height="450" 
+          style="border:0; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="https://www.google.com/maps/dir//Rua+Comari,+250+-+Campo+Grande" 
+             target="_blank" 
+             class="btn btn-primary" 
+             style="display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fas fa-directions"></i>
+            Como Chegar
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Botão Flutuante do WhatsApp -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/5521969860195?text=Olá! Gostaria de agendar um horário no Salão da Netinha." 
+       target="_blank" class="whatsapp-btn" title="Fale conosco no WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="grid" style="display:flex; justify-content:center;">
+        <div class="col-6" style="max-width:720px;">
+          <strong>Salão da Netinha</strong>
+          <div class="note">CNPJ 00.000.000/0001-00 • Rua Comari, 250 — Campo Grande </div>
+          <div class="note">Atendimento: seg–sáb 09:00–19:00</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FORMULÁRIO DE CONTATO
+    document.getElementById('form-contato').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const nome = document.getElementById('nome-contato').value;
+      const email = document.getElementById('email-contato').value;
+      const telefone = document.getElementById('telefone-contato').value;
+      const assunto = document.getElementById('assunto-contato').value;
+      const mensagem = document.getElementById('mensagem-contato').value;
+      
+      // Simular envio - usar modal ao invés de alert
+      mostrarModalContato(`Mensagem enviada com sucesso!\n\nObrigada pelo contato, ${nome}. Retornaremos em breve!`);
+      
+      // Limpar formulário
+      this.reset();
+    });
+
+    // Função para mostrar modal customizado
+    function mostrarModalContato(mensagem) {
+      const modalCustom = document.createElement('div');
+      modalCustom.className = 'modal-custom-overlay';
+      modalCustom.innerHTML = `
+        <div class="modal-custom-content">
+          <div class="modal-custom-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="modal-custom-body">${mensagem.replace(/\n/g, '<br>')}</div>
+          <button class="modal-custom-btn" onclick="this.closest('.modal-custom-overlay').remove()">OK</button>
+        </div>
+      `;
+      document.body.appendChild(modalCustom);
+      
+      // Auto-remover ao clicar fora
+      modalCustom.addEventListener('click', (e) => {
+        if (e.target === modalCustom) {
+          modalCustom.remove();
+        }
+      });
+    }
+  </script>
+
+  <script src="../scripts/menu.js"></script>
+</body>
+</html>

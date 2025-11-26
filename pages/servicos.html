@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Serviços — Salão da Netinha</title>
+  <meta name="description" content="Conheça todos os serviços oferecidos pelo Salão da Netinha."/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../styles/style.css">
+
+  <style>
+    /* SOBRESCREVER ESTILOS ESPECÍFICOS PARA MANTER CONSISTÊNCIA */
+    .nav-actions .btn,
+    .nav-actions a.btn {
+      padding: 6px 16px !important;
+      border-radius: 150px !important;
+      border: 1px solid rgba(255,255,255,0.2) !important;
+      background: rgba(255,255,255,0.2) !important;
+      color: #fff !important;
+      font-weight: bold !important;
+      transition: all 0.3s ease !important;
+      margin-left: 10px !important;
+      text-decoration: none !important;
+    }
+
+    .nav-actions .btn i,
+    .nav-actions a.btn i {
+      margin-right: 5px !important;
+      font-size: 12px !important;
+    }
+
+    .nav-actions .btn:hover,
+    .nav-actions a.btn:hover {
+      transform: scale(1.04) !important;
+      background: rgba(255,255,255,0.3) !important;
+      color: #fff !important;
+    }
+
+    /* ESTILO DOS CARDS */
+    .secao-servicos {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .servico-card {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      padding: 28px;
+      margin: 50px 0;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .servico-card img {
+      width: 360px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .servico-texto h1 {
+      margin-bottom: 12px;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text, #000000);
+    }
+
+    .servico-texto p {
+      font-size: 16px;
+      opacity: .85;
+      line-height: 1.6;
+      color: var(--text, #4a314d);
+    }
+
+    /* Alterna imagem e texto */
+    .invertido {
+      flex-direction: row-reverse;
+    }
+
+    /* RESPONSIVIDADE MELHORADA */
+    @media(max-width: 900px) {
+      .servico-card {
+        gap: 20px;
+        padding: 20px;
+        margin: 30px 0;
+      }
+      
+      .servico-card img {
+        width: 300px;
+        height: 220px;
+      }
+      
+      .servico-texto h1 {
+        font-size: 22px;
+      }
+      
+      .servico-texto p {
+        font-size: 15px;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .secao-servicos {
+        padding: 0 15px;
+      }
+      
+      .servico-card,
+      .invertido {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 15px;
+        padding: 18px;
+        margin: 25px 0;
+      }
+
+      .servico-card img {
+        width: 100%;
+        max-width: 400px;
+        height: 220px;
+        margin: 0 auto;
+      }
+      
+      .servico-texto h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      
+      .servico-texto p {
+        font-size: 14px;
+        text-align: left;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .secao-servicos {
+        padding: 0 10px;
+      }
+      
+      .servico-card {
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 16px;
+      }
+      
+      .servico-card img {
+        height: 180px;
+        border-radius: 12px;
+      }
+      
+      .servico-texto h1 {
+        font-size: 18px;
+      }
+      
+      .servico-texto p {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      
+      h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="brand" aria-label="Página inicial">
+        <span class="brand-logo" aria-hidden="true">
+          <img src="../img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
+        </span>
+        <span>Salão da Netinha</span>
+      </a>
+
+      <div class="search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 21l-4.3-4.3" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="11" cy="11" r="7" stroke="#fff" stroke-opacity=".6" stroke-width="1.6"/>
+        </svg>
+        <input id="busca" placeholder="Buscar serviços... (ex: corte, manicure, maquiagem)" />
+      </div>
+
+      <!-- Menu hambúrguer -->
+      <button class="menu-hamburger" id="menu-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar-menu" id="sidebar-menu">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-bars"></i> Menu</h3>
+        <button class="sidebar-close" id="sidebar-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-body">
+        <a href="../index.html" class="sidebar-item">
+          <i class="fas fa-home"></i>
+          <span>Início</span>
+        </a>
+        
+        <a href="servicos.html" class="sidebar-item active">
+          <i class="fas fa-cut"></i>
+          <span>Nossos Serviços</span>
+        </a>
+        
+        <a href="index.html#agendamento" class="sidebar-item">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Agendar Horário</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="sidebar-item" onclick="toggleCarrinho()">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Carrinho</span>
+          <span class="sidebar-badge" id="sidebar-cart-count">0</span>
+        </a>
+        
+        <a href="perfil.html" class="sidebar-item">
+          <i class="fas fa-user"></i>
+          <span>Meu Perfil</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="Sobrenos.html" class="sidebar-item">
+          <i class="fas fa-info-circle"></i>
+          <span>Sobre Nós</span>
+        </a>
+        
+        <a href="contato.html" class="sidebar-item">
+          <i class="fas fa-phone"></i>
+          <span>Contato</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="javascript:void(0)" class="sidebar-item sidebar-item-danger" id="sidebar-sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+      </div>
+    </div>
+  </header>
+
+  <section class="secao-servicos">
+
+    <h2 style="text-align:center; margin-bottom:40px;">Nossos Serviços</h2>
+
+    <!-- 1 - CORTE -->
+    <article class="servico-card">
+      <img src="../img/corte feminino.webp" alt="Corte de cabelo">
+      <div class="servico-texto">
+        <h1>Corte de Cabelo Feminino & Masculino</h1>
+        <p>
+          Cortes modernos, clássicos e personalizados conforme o estilo de cada cliente.
+          O corte é finalizado com escova ou modelagem, garantindo resultado alinhado,
+          elegante e com acabamento profissional.
+        </p>
+      </div>
+    </article>
+
+    <!-- 2 - ESCOVA -->
+    <article class="servico-card invertido">
+      <img src="img/escova.jpeg" alt="Escova modelada">
+      <div class="servico-texto">
+        <h1>Escova & Modelagem</h1>
+        <p>
+          Escova lisa, ondulada, modelada e finalizações especiais para eventos.
+          Perfeita para quem deseja fios alinhados, volumosos ou com ondas naturais.
+        </p>
+      </div>
+    </article>
+
+    <!-- 3 - PROGRESSIVA -->
+    <article class="servico-card">
+      <img src="img/progressiva.webp" alt="Progressiva e tratamentos">
+      <div class="servico-texto">
+        <h1>Progressiva & Tratamentos Capilares</h1>
+        <p>
+          Oferecemos progressiva, botox capilar, hidratação, nutrição e reconstrução.
+          Produtos de alta qualidade para revitalizar, alinhar e recuperar a saúde dos fios.
+        </p>
+      </div>
+    </article>
+
+    <!-- 4 - UNHAS -->
+    <article class="servico-card invertido">
+      <img src="../img/manicure.jpg" alt="Manicure e Pedicure">
+      <div class="servico-texto">
+        <h1>Manicure & Pedicure</h1>
+        <p>
+          Unhas bem cuidadas com cutilagem, esmaltação tradicional, gel, blindagem
+          e nail art. Total higiene e esterilização garantida.
+        </p>
+      </div>
+    </article>
+
+    <!-- 5 - SOBRANCELHA -->
+    <article class="servico-card">
+      <img src="../img/sobrancelha.webp" alt="Design de sobrancelha">
+      <div class="servico-texto">
+        <h1>Design de Sobrancelha & Henna</h1>
+        <p>
+          Avaliação individual para deixar o formato perfeito para o rosto.
+          Trabalhamos com pinça, linha e henna profissional.
+        </p>
+      </div>
+    </article>
+
+    <!-- 6 - MAQUIAGEM -->
+    <article class="servico-card invertido">
+      <img src="../img/maquiagem.jpg" alt="Maquiagem profissional">
+      <div class="servico-texto">
+        <h1>Maquiagem Profissional</h1>
+        <p>
+          Maquiagem social, festa e eventos. Técnica profissional para uma pele leve,
+          iluminada e com longa duração.
+        </p>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- FOOTER ORIGINAL -->
+  <footer style="text-align:center; padding:24px 20px;">
+    <div class="container">
+      <div class="grid" style="display:flex; justify-content:center;">
+        <div class="col-0" style="max-width:720px;">
+          <strong>Salão da Netinha</strong>
+          <div>CNPJ 00.000.000/0001-00 • Rua comari, 250 — Campo Grande </div>
+          <div>Atendimento: seg–sáb 09:00–19:00</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DO CARRINHO -->
+  <div id="modal-carrinho" class="cart-modal">
+    <div class="cart-modal-content">
+      <div class="cart-modal-header">
+        <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
+        <button class="cart-close" onclick="toggleCarrinho()">×</button>
+      </div>
+      <div class="cart-modal-body" id="lista-carrinho">
+        <!-- Itens serão renderizados aqui -->
+      </div>
+      <div class="cart-modal-footer">
+        <div class="cart-total">
+          <strong>Total:</strong>
+          <span id="total-carrinho">R$ 0,00</span>
+        </div>
+        <button class="btn-finalizar" onclick="finalizarCompra()">
+          <i class="fas fa-check"></i> Finalizar Compra
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../scripts/menu.js"></script>
+</body>
+</html>

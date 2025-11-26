@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salão da Netinha - Login</title>
+
+  <!-- CSS da página -->
+  <link rel="stylesheet" href="../styles/StyleLogin.css">
+
+  <!-- BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="grid">
+        <div class="col-6">
+          <a class="brand" href="../index.html">
+            <span class="brand-logo" aria-hidden="true">
+              <img src="../img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
+            </span>
+            <strong>Salão da Netinha</strong>
+          </a>
+        </div>
+        <div class="col-6" style="text-align:right">
+          <!-- Botão removido -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div class="box">
+    <h2 id="formTitle">Login</h2>
+
+    <!-- LOGIN -->
+    <div id="loginForm">
+      <input id="emailLogin" placeholder="E-mail">
+      <input id="senhaLogin" type="password" placeholder="Senha">
+      <button id="loginButton">Entrar</button>
+
+      <div class="toggle" onclick="mostrarCadastro()">Não tem conta? Cadastre-se</div>
+    </div>
+
+    <!-- CADASTRO -->
+    <div id="cadastroForm" style="display:none">
+      <input id="nomeCadastro" placeholder="Nome completo">
+      <input id="emailCadastro" placeholder="E-mail">
+      <input id="telefoneCadastro" placeholder="Telefone (opcional)">
+      <input id="senhaCadastro" type="password" placeholder="Senha">
+
+      <!-- Login com Google -->
+      <div id="g_id_onload"
+        data-client_id=""
+        data-context="signin"
+        data-callback="handleCredentialResponse"
+        data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin" data-type="standard"></div>
+
+      <button onclick="cadastrar()">Cadastrar</button>
+
+      <div class="toggle" onclick="mostrarLogin()">Já tem conta? Entrar</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 text-center"></div>
+          <strong>Salão da Netinha</strong>
+          <div class="note">CNPJ 00.000.000/0001-00 • Rua Comari, 250 — Campo Grande</div>
+          <div class="note">Atendimento: seg–sáb 09:00–19:00</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL GLOBAL -->
+  <div class="modal fade" id="modalMensagem" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:15px;">
+        <div class="modal-header" style="background:#e66ba6;color:white;">
+          <h5 class="modal-title" id="modalTitulo">Mensagem</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modalTexto"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS da página -->
+  <script src="../scripts/login.js"></script>
+
+</body>
+</html>

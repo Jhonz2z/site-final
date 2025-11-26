@@ -1,0 +1,20 @@
+{
+  "rewrites": [
+    {
+      "source": "/criar-pagamento",
+      "destination": "/api/server"
+    },
+    {
+      "source": "/criar-pagamento-cartao",
+      "destination": "/api/server"
+    },
+    {
+      "source": "/verificar-pagamento/:id",
+      "destination": "/api/server"
+    },
+    {
+      "source": "/webhook",
+      "destination": "/api/server"
+    }
+  ]
+}

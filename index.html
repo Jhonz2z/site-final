@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salão da Netinha</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles/style.css">
+
+  <style>
+    /* Espaçamento dos ícones nos botões */
+    .nav-actions .btn i {
+      margin-right: 5px !important;
+      font-size: 12px !important;
+    }
+  </style>
+
+  <!-- BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Página inicial">
+        <span class="brand-logo" aria-hidden="true">
+          <img src="./img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
+        </span>
+        <span>Salão da Netinha</span>
+      </a>
+
+      <div class="search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 21l-4.3-4.3" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="11" cy="11" r="7" stroke="#fff" stroke-opacity=".6" stroke-width="1.6"/>
+        </svg>
+        <input id="busca" placeholder="Buscar serviços... (ex: corte, manicure, maquiagem)" />
+      </div>
+
+      <!-- Menu hambúrguer -->
+      <button class="menu-hamburger" id="menu-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar-menu" id="sidebar-menu">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-bars"></i> Menu</h3>
+        <button class="sidebar-close" id="sidebar-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-body">
+        <a href="pages/servicos.html" class="sidebar-item">
+          <i class="fas fa-cut"></i>
+          <span>Nossos Serviços</span>
+        </a>
+        
+        <a href="#agendamento" class="sidebar-item" id="sidebar-agendamento">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Agendar Horário</span>
+        </a>
+        
+        <a href="javascript:void(0)" class="sidebar-item" onclick="toggleCarrinho()">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Carrinho</span>
+          <span class="sidebar-badge" id="sidebar-cart-count">0</span>
+        </a>
+        
+        <a href="pages/perfil.html" class="sidebar-item">
+          <i class="fas fa-user"></i>
+          <span>Meu Perfil</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="pages/Sobrenos.html" class="sidebar-item">
+          <i class="fas fa-info-circle"></i>
+          <span>Sobre Nós</span>
+        </a>
+        
+        <a href="pages/contato.html" class="sidebar-item">
+          <i class="fas fa-phone"></i>
+          <span>Contato</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="javascript:void(0)" class="sidebar-item sidebar-item-danger" id="sidebar-sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-inner">
+      
+      <div class="hero-card fade-in">
+        <div class="pill"> Venha já conhecer nosso salão </div>
+        <h1>Beleza com <span style="background:linear-gradient(90deg,#ec4899,#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent">carinho e profissionalismo</span></h1>
+        <p>Agende seu horário e viva uma experiência única de cuidado e autoestima no Salão da Netinha.</p>
+        <div class="badges">
+          <span class="pill">Profissionais qualificados</span>
+          <span class="pill">Ambiente acolhedor</span>
+          <span class="pill">Produtos premium</span>
+        </div>
+      </div>
+
+      <div class="hero-card fade-in" style="display:grid;place-items:center">
+  <img src="./img/Logo2.png" class="hero-logo" width="165" height="165" alt="Logo do salão">
+        <div class="note">Cuidando de você desde 2015 </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="section container" id="servicos">
+    <h2>Nossos Serviços</h2>
+
+    <div id="botoes-categorias" class="categories-container">
+      <button class="btn-category active" data-cat="todos">Todos</button>
+      <button class="btn-category" data-cat="cabelos">Cabelos</button>
+      <button class="btn-category" data-cat="unhas">Unhas</button>
+      <button class="btn-category" data-cat="estetica">Estética</button>
+      <button class="btn-category" data-cat="maquiagem">Maquiagem</button>
+    </div>
+
+    <div id="prod-grid" class="grid"></div>
+  </section>
+
+  <!-- AGENDAMENTO -->
+  <section class="section container" id="agendamento">
+    <h2>Agende seu horário</h2>
+
+    <form id="form-agendamento" class="booking card">
+      <div class="card-content">
+        <div class="row">
+          <div>
+        <div class="row">
+          <div>
+            <label for="tipo-servico">Serviço</label>
+            <select id="tipo-servico" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="corte">Corte de cabelo</option>
+              <option value="manicure">Manicure ou pedicure</option>
+              <option value="escova">Escova e penteado</option>
+              <option value="progressiva">Progressiva</option>
+              <option value="maquiagem">Maquiagem</option>
+              <option value="tratamento">Tratamento capilar</option>
+              <option value="depilacao">Depilação</option>
+              <option value="unhasgel">Unhas em Gel</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="data">Data</label>
+            <input type="date" id="data" required />
+          </div>
+          
+          <div>
+            <label for="hora">Hora</label>
+            <input type="time" id="hora" required />
+          </div>
+          
+          <div>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" required />
+          </div>
+          
+          <div>
+            <label for="telefone">Telefone</label>
+            <input id="telefone" placeholder="(xx) xxxxx-xxxx" required />
+          </div>
+        </div>
+
+        <div>
+          <label for="detalhes">Observações</label>
+          <textarea id="detalhes"></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Confirmar</button>
+          <button type="reset" class="btn">Limpar</button>
+        </div>
+      </div>
+    </form>
+
+    <div id="lista-agendamentos" style="margin-top:30px;color:black"></div>
+    <button id="btn-limpar-ag" class="btn" style="margin-top:10px;">Limpar Agendamentos</button>
+  </section>
+
+  <!-- MODAL MENSAGEM -->
+  <div class="modal fade" id="modalMensagem" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:15px;">
+        <div class="modal-header" style="background:#e66ba6;color:white;">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modalTexto"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- MODAL CONFIRMAR -->
+<div class="modal fade" id="modalConfirmar" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:15px;">
+
+      <div class="modal-header" style="background:#e66ba6;color:white;">
+        <h5 class="modal-title">Confirmar ação</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body" id="modalConfirmarTexto">Tem certeza?</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="btnConfirmarSim">Sim, apagar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <!-- SEÇÃO INFORMAÇÕES -->
+  <section class="info-section container">
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Sobre Nós</h3>
+        <p>Conheça nossa história, missão e valores que nos tornam únicos no cuidado da sua beleza.</p>
+        <a href="Sobrenos.html" class="info-link">
+          Saiba mais <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <h3>Contato</h3>
+        <p>Entre em contato conosco para tirar dúvidas, fazer sugestões ou agendar seu horário.</p>
+        <a href="contato.html" class="info-link">
+          Fale conosco <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPA DE LOCALIZAÇÃO -->
+  <section class="section container" style="margin-top: 60px; margin-bottom: 60px;">
+    <h2 style="text-align: center; margin-bottom: 30px;">
+      <i class="fas fa-map-marked-alt"></i> Onde Estamos
+    </h2>
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.0899842234346!2d-43.56825!3d-22.89917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUzJzU3LjAiUyA0M8KwMzQnMDUuNyJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+        width="100%" 
+        height="400" 
+        style="border:0; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <div style="text-align: center; margin-top: 20px;">
+        <p style="color: var(--text); margin-bottom: 15px;">
+          <i class="fas fa-map-marker-alt"></i> Rua Comari, 250 - Campo Grande, RJ
+        </p>
+        <a href="https://www.google.com/maps/dir//Rua+Comari,+250+-+Campo+Grande" 
+           target="_blank" 
+           class="btn" 
+           style="display: inline-flex; align-items: center; gap: 8px;">
+          <i class="fas fa-directions"></i>
+          Como Chegar
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="text-align:center; padding:24px 20px;">
+    <strong>Salão da Netinha</strong><br>
+    CNPJ 00.000.000/0001-00 • Rua Comari, 250 — Campo Grande<br>
+    Atendimento: seg–sáb 09:00–19:00
+  </footer>
+
+  <!-- MODAL DO CARRINHO -->
+  <div id="modal-carrinho" class="cart-modal">
+    <div class="cart-modal-content">
+      <div class="cart-modal-header">
+        <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
+        <button class="cart-close" onclick="toggleCarrinho()">×</button>
+      </div>
+      <div class="cart-modal-body" id="lista-carrinho">
+        <!-- Itens serão renderizados aqui -->
+      </div>
+      <div class="cart-modal-footer">
+        <div class="cart-total">
+          <strong>Total:</strong>
+          <span id="total-carrinho">R$ 0,00</span>
+        </div>
+        <button class="btn-finalizar" onclick="finalizarCompra()">
+          <i class="fas fa-check"></i> Finalizar Compra
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/script.js"></script>
+  <script src="scripts/menu.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+body { 
+  font-family: 'Inter', Arial, sans-serif; 
+  background-image: linear-gradient(#f8c6da, #f084b7); 
+  color: #ffffff; 
+  margin: 0; 
+  display: flex; 
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  padding: 20px 40px;
+  background: linear-gradient(90deg, #e66ba6, #f6a8c2);
+  color: #fff;
+  margin-bottom: 40px; 
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(230,107,166,0.3);
+}
+
+header .grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+header .col-6 {
+  flex: 0 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: white;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+.brand-logo img, .brand-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Estilo dos botões do header (Início, Agendar, Sair) */
+header .btn-header {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.2) !important;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+header .btn-header:hover {
+  transform: scale(1.05);
+  color: #fff;
+  background: rgba(255,255,255,.3) !important;
+}
+
+header button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+header button:focus {
+  outline: none;
+}
+
+/* CAIXA DE LOGIN */
+.box { 
+  background: #fff; 
+  color: #4a314d;
+  padding: 30px; 
+  border-radius: 14px; 
+  width: 100%;
+  max-width: 420px;
+  margin: 20px auto; 
+  box-shadow: 0 4px 20px rgba(230,107,166,0.2);
+  border: 2px solid #f6a8c2;
+}
+
+h2 { 
+  text-align: center; 
+  margin-bottom: 20px; 
+  color: #e66ba6;
+  font-weight: 700;
+}
+
+/* INPUTS */
+input, select, button { 
+  width: 100%; 
+  padding: 10px; 
+  margin: 8px 0; 
+  border-radius: 6px; 
+  box-sizing: border-box;
+  border: 1px solid #f3bfd3; 
+  font-size: 14px;
+}
+
+input, select {
+  background: #fff5f9;
+  color: #4a314d;
+}
+
+/* BOTÕES */
+button { 
+  background: linear-gradient(135deg, #e66ba6, #f6a8c2); 
+  color: #fff;
+  border: none; 
+  border-radius: 6px; 
+  cursor: pointer; 
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+button:hover { 
+  transform: scale(1.03);
+  background: linear-gradient(135deg, #f084b7, #f8c6da); 
+}
+
+/* SOBRE NÓS */
+#btn-sobrenos {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.2) !important;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+#btn-sobrenos:hover {
+  transform: scale(1.05);
+  color: #fff;
+  background: rgba(255,255,255,.3) !important;
+}
+
+/* TROCAR LOGIN/CADASTRO */
+.toggle { 
+  text-align: center; 
+  margin-top: 12px; 
+  cursor: pointer; 
+  color: #e66ba6; 
+  font-weight: 600;
+}
+
+.toggle:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+footer {
+  margin-top: auto;
+  width: 100vw;
+  border-top: 1px solid #ffffff14;
+  padding: 25px 40px;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #e66ba6, #f6a8c2);
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 10px rgba(230,107,166,0.2);
+}
+
+/* MEDIA QUERIES RESPONSIVAS */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  header {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+  }
+  
+  header .grid {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  header .col-6 {
+    width: 100%;
+  }
+  
+  header .col-6:last-child {
+    text-align: center;
+  }
+  
+  .brand {
+    justify-content: center;
+  }
+  
+  .box {
+    padding: 20px;
+    margin: 10px auto;
+    border-radius: 12px;
+  }
+  
+  footer {
+    padding: 20px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px 15px;
+  }
+  
+  .brand {
+    font-size: 0.9rem;
+  }
+  
+  .brand-logo {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .brand-logo img, .brand-img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .box {
+    padding: 15px;
+    margin: 5px;
+    max-width: calc(100% - 10px);
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  input, select, button {
+    padding: 12px;
+    font-size: 16px; /* Evita zoom no iOS */
+  }
+  
+  #btn-sobrenos {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  footer {
+    padding: 15px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .box {
+    padding: 12px;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  input, select, button {
+    padding: 10px;
+  }
+}

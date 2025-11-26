@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meu Perfil - Salão da Netinha</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/perfil.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="brand" aria-label="Página inicial">
+        <span class="brand-logo" aria-hidden="true">
+          <img src="../img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
+        </span>
+        <span>Salão da Netinha</span>
+      </a>
+
+      <div class="search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 21l-4.3-4.3" stroke="#fff" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="11" cy="11" r="7" stroke="#fff" stroke-opacity=".6" stroke-width="1.6"/>
+        </svg>
+        <input id="busca" placeholder="Buscar serviços..." />
+      </div>
+
+      <button class="menu-hamburger" id="menu-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar-menu" id="sidebar-menu">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-bars"></i> Menu</h3>
+        <button class="sidebar-close" id="sidebar-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-body">
+        <a href="../index.html" class="sidebar-item">
+          <i class="fas fa-home"></i>
+          <span>Início</span>
+        </a>
+        
+        <a href="servicos.html" class="sidebar-item">
+          <i class="fas fa-cut"></i>
+          <span>Nossos Serviços</span>
+        </a>
+        
+        <a href="index.html#agendamento" class="sidebar-item">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Agendar Horário</span>
+        </a>
+        
+        <a href="perfil.html" class="sidebar-item active">
+          <i class="fas fa-user"></i>
+          <span>Meu Perfil</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="Sobrenos.html" class="sidebar-item">
+          <i class="fas fa-info-circle"></i>
+          <span>Sobre Nós</span>
+        </a>
+        
+        <a href="contato.html" class="sidebar-item">
+          <i class="fas fa-phone"></i>
+          <span>Contato</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="javascript:void(0)" class="sidebar-item sidebar-item-danger" id="sidebar-sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERFIL DO USUÁRIO -->
+  <section class="section container" style="margin-top: 100px;">
+    <div class="perfil-header">
+      <div class="perfil-avatar">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <div class="perfil-info">
+        <h1 id="perfil-nome">Carregando...</h1>
+        <p id="perfil-email">email@exemplo.com</p>
+      </div>
+      <button class="btn btn-edit" onclick="editarPerfil()">
+        <i class="fas fa-edit"></i> Editar Perfil
+      </button>
+    </div>
+
+    <!-- ABAS -->
+    <div class="perfil-tabs">
+      <button class="tab-btn active" data-tab="compras">
+        <i class="fas fa-shopping-bag"></i> Minhas Compras
+      </button>
+      <button class="tab-btn" data-tab="agendamentos">
+        <i class="fas fa-calendar-check"></i> Meus Agendamentos
+      </button>
+    </div>
+
+    <!-- CONTEÚDO DAS ABAS -->
+    <div class="tab-content active" id="tab-compras">
+      <div class="content-header">
+        <h2><i class="fas fa-shopping-bag"></i> Histórico de Compras</h2>
+        <p class="subtitle">Veja todas as suas compras realizadas</p>
+      </div>
+      
+      <div id="lista-compras" class="compras-lista">
+        <!-- Compras serão renderizadas aqui -->
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-agendamentos">
+      <div class="content-header">
+        <h2><i class="fas fa-calendar-check"></i> Meus Agendamentos</h2>
+        <p class="subtitle">Gerencie seus horários agendados</p>
+      </div>
+      
+      <div id="lista-agendamentos-perfil" class="agendamentos-lista">
+        <!-- Agendamentos serão renderizados aqui -->
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL EDITAR PERFIL -->
+  <div class="modal fade" id="modalEditarPerfil" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:15px;">
+        <div class="modal-header" style="background:#e66ba6;color:white;">
+          <h5 class="modal-title"><i class="fas fa-edit"></i> Editar Perfil</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form-editar-perfil">
+            <div class="mb-3">
+              <label for="edit-nome" class="form-label">Nome Completo</label>
+              <input type="text" class="form-control" id="edit-nome" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-email" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="edit-email" required>
+            </div>
+            <div class="mb-3">
+              <label for="edit-telefone" class="form-label">Telefone</label>
+              <input type="tel" class="form-control" id="edit-telefone" placeholder="(xx) xxxxx-xxxx">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="salvarPerfil()">
+            <i class="fas fa-save"></i> Salvar Alterações
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DETALHES DA COMPRA -->
+  <div class="modal fade" id="modalDetalhesCompra" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="border-radius:15px;">
+        <div class="modal-header" style="background:#e66ba6;color:white;">
+          <h5 class="modal-title"><i class="fas fa-receipt"></i> Detalhes da Compra</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="detalhes-compra-body">
+          <!-- Detalhes serão renderizados aqui -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL CARRINHO -->
+  <div id="modal-carrinho" class="cart-modal">
+    <div class="cart-modal-content">
+      <div class="cart-modal-header">
+        <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
+        <button class="cart-close" onclick="toggleCarrinho()">×</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="text-align:center; padding:24px 20px; margin-top: 80px;">
+    <strong>Salão da Netinha</strong><br>
+    CNPJ 00.000.000/0001-00 • Rua Comari, 250 — Campo Grande<br>
+    Atendimento: seg–sáb 09:00–19:00
+  </footer>
+
+  <script src="../scripts/menu.js"></script>
+  <script src="../scripts/perfil.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

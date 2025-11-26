@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Salão da Netinha — Sobre Nós</title>
+  <meta name="description" content="Conheça o Salão da Netinha — um espaço de beleza, cuidado e autoestima. Veja nossa história, missão e o carinho por trás de cada atendimento."/>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../styles/Stylesobrenos.css">
+  <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="brand" aria-label="Página inicial">
+        <span class="brand-logo" aria-hidden="true">
+          <img src="../img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
+        </span>
+        <span>Salão da Netinha</span>
+      </a>
+      
+      <!-- Menu hambúrguer -->
+      <button class="menu-hamburger" id="menu-hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="sidebar-menu" id="sidebar-menu">
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="sidebar-content">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-bars"></i> Menu</h3>
+        <button class="sidebar-close" id="sidebar-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="sidebar-body">
+        <a href="../index.html" class="sidebar-item">
+          <i class="fas fa-home"></i>
+          <span>Início</span>
+        </a>
+        
+        <a href="servicos.html" class="sidebar-item">
+          <i class="fas fa-cut"></i>
+          <span>Nossos Serviços</span>
+        </a>
+        
+        <a href="index.html#agendamento" class="sidebar-item">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Agendar Horário</span>
+        </a>
+        
+        <a href="perfil.html" class="sidebar-item">
+          <i class="fas fa-user"></i>
+          <span>Meu Perfil</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="Sobrenos.html" class="sidebar-item active">
+          <i class="fas fa-info-circle"></i>
+          <span>Sobre Nós</span>
+        </a>
+        
+        <a href="contato.html" class="sidebar-item">
+          <i class="fas fa-phone"></i>
+          <span>Contato</span>
+        </a>
+        
+        <div class="sidebar-divider"></div>
+        
+        <a href="javascript:void(0)" class="sidebar-item sidebar-item-danger" id="sidebar-sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção Sobre Nós -->
+  <main class="container sobre-content">
+    <h1 class="page-title">Sobre Nós</h1>
+    <p class="intro-text">
+      No <strong>Salão da Netinha</strong>, acreditamos que beleza é muito mais do que aparência — 
+      é sobre confiança, bem-estar e autoestima.  
+      Fundado com amor e dedicação, o salão nasceu com o propósito de oferecer um ambiente acolhedor, 
+      moderno e totalmente voltado para o seu cuidado.
+    </p>
+
+    <section class="sobre-section">
+      <h2 class="section-title">Nossa Missão</h2>
+      <p class="section-text">
+        Proporcionar experiências únicas em beleza, combinando técnicas profissionais, produtos de alta qualidade 
+        e um atendimento humano e personalizado para cada cliente.
+      </p>
+    </section>
+
+    <section class="sobre-section">
+      <h2 class="section-title">Nossos Valores</h2>
+      <ul class="valores-list">
+        <li><strong>Respeito e cuidado</strong> em cada atendimento</li>
+        <li><strong>Profissionalismo</strong> com constante atualização e técnica</li>
+        <li><strong>Ambiente acolhedor</strong> e inspirador</li>
+        <li><strong>Compromisso com qualidade</strong> e produtos seguros</li>
+      </ul>
+    </section>
+
+    <section class="sobre-section">
+      <h2 class="section-title">Nosso Espaço</h2>
+      <p class="section-text">
+        Um local pensado para relaxar e se sentir bem.  
+        Cada detalhe do nosso salão foi planejado para que você tenha uma experiência 
+        completa de conforto, carinho e beleza.
+      </p>
+      <div class="image-container">
+        <img src="../img/foto salao.jpg" alt="Foto do Salão da Netinha" class="salao-image">
+      </div>
+    </section>
+
+    <!-- Mapa de Localização -->
+    <section class="sobre-section" style="margin-top: 60px;">
+      <h2 class="section-title">
+        <i class="fas fa-map-marked-alt"></i> Nossa Localização
+      </h2>
+      <p class="section-text">
+        Venha nos visitar! Estamos localizados em Campo Grande, RJ, em um lugar de fácil acesso.
+      </p>
+      <div style="max-width: 900px; margin: 30px auto;">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.0899842234346!2d-43.56825!3d-22.89917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUzJzU3LjAiUyA0M8KwMzQnMDUuNyJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+          width="100%" 
+          height="400" 
+          style="border:0; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div style="text-align: center; margin-top: 20px;">
+          <p style="color: var(--text); margin-bottom: 15px; font-size: 1.1rem;">
+            <i class="fas fa-map-marker-alt"></i> <strong>Rua Comari, 250 - Campo Grande, RJ</strong>
+          </p>
+          <a href="https://www.google.com/maps/dir//Rua+Comari,+250+-+Campo+Grande" 
+             target="_blank" 
+             style="display: inline-block; padding: 12px 24px; background: linear-gradient(90deg, #f084b7, #f8c6da); color: white; border-radius: 8px; text-decoration: none; font-weight: 600; box-shadow: 0 2px 10px rgba(240,132,183,0.3); transition: transform 0.2s;">
+            <i class="fas fa-directions"></i>
+            Como Chegar
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="text-align:center; padding:24px 20px;">
+    <div class="container">
+      <div class="grid" style="display:flex; justify-content:center;">
+        <div class="col-6" style="max-width:720px;">
+          <strong>Salão da Netinha</strong>
+          <div class="note">CNPJ 00.000.000/0001-00 • Rua comari , 250 — Campo Grande </div>
+          <div class="note">Atendimento: seg–sáb 09:00–19:00</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pagamento — Salão da Netinha</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/style.css">
+  <link rel="stylesheet" href="../styles/pagamento.css">
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="brand">
+        <span class="brand-logo">
+          <img src="../img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
+        </span>
+        <span>Salão da Netinha</span>
+      </a>
+      <div class="nav-actions">
+        <button class="btn" onclick="window.location.href='Index.html'"><span><i class="fas fa-home"></i> Início</span></button>
+        <button class="btn" id="btn-sair"><span><i class="fas fa-sign-out-alt"></i> Sair</span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="payment-container">
+    <div class="payment-header">
+      <h1><i class="fas fa-credit-card"></i> Finalizar Pagamento</h1>
+      <p style="color: var(--muted); font-size: 1.1rem;">Escolha a forma de pagamento e confirme sua compra</p>
+    </div>
+
+    <div class="payment-layout">
+      <div class="payment-card">
+        <h2><i class="fas fa-shopping-bag"></i> Resumo do Pedido</h2>
+        <div id="order-items"></div>
+        <div class="order-summary">
+          <div class="order-total">
+            <strong>Total:</strong>
+            <span id="order-total">R$ 0,00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="payment-card">
+        <h2><i class="fas fa-wallet"></i> Forma de Pagamento</h2>
+        <div class="payment-methods">
+          <label class="payment-method" for="pix">
+            <input type="radio" name="payment" id="pix" value="pix">
+            <div class="payment-method-icon"><i class="fas fa-qrcode"></i></div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">PIX</div>
+              <div class="payment-method-desc">Aprovação instantânea</div>
+            </div>
+          </label>
+          <label class="payment-method" for="credito">
+            <input type="radio" name="payment" id="credito" value="credito">
+            <div class="payment-method-icon"><i class="fas fa-credit-card"></i></div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">Cartão de Crédito</div>
+              <div class="payment-method-desc">Até 12x sem juros</div>
+            </div>
+          </label>
+          <label class="payment-method" for="debito">
+            <input type="radio" name="payment" id="debito" value="debito">
+            <div class="payment-method-icon"><i class="fas fa-credit-card"></i></div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">Cartão de Débito</div>
+              <div class="payment-method-desc">À vista</div>
+            </div>
+          </label>
+          <label class="payment-method" for="dinheiro">
+            <input type="radio" name="payment" id="dinheiro" value="dinheiro">
+            <div class="payment-method-icon"><i class="fas fa-money-bill-wave"></i></div>
+            <div class="payment-method-info">
+              <div class="payment-method-title">Dinheiro</div>
+              <div class="payment-method-desc">Pagar no salão</div>
+            </div>
+          </label>
+        </div>
+
+        <div id="pix-details" class="payment-details">
+          <div class="pix-info">
+            <h3>Use o QR Code do Pix para pagar</h3>
+            <p>Abra o app em que vai fazer a transferência, escaneie a imagem ou cole o código do QR Code</p>
+            <div class="pix-qrcode">
+              <img src="../img/qrcode-pix.png" alt="QR Code PIX" class="qrcode-img">
+            </div>
+            <p style="font-size: 1.2rem; font-weight: 600; color: var(--primary); margin: 10px 0;">R$ 0,00</p>
+            
+            <div class="pix-code-container">
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--text);">Código PIX:</label>
+              <div class="pix-code" id="pix-code">00020126330014BR.GOV.BCB.PIX0111161275147465204000053039865802BR5925Joao Felipe Galdino Faria6009SAO PAULO62140510nHYhPWEkge63040AA9</div>
+              <button class="copy-btn" onclick="copiarCodigoPix()" style="margin-top: 10px; width: 100%;">
+                <i class="fas fa-copy"></i> Copiar Código QR
+              </button>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-left: 4px solid #3b82f6; border-radius: 8px;">
+              <p style="font-size: 0.95rem; color: #1e40af; margin: 0; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-info-circle" style="font-size: 1.2rem;"></i>
+                <span><strong>Aguardando pagamento...</strong><br>Você será redirecionado automaticamente assim que o pagamento for confirmado!</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="card-details" class="payment-details">
+          <form id="card-form">
+            <div class="form-group">
+              <label>Número do Cartão</label>
+              <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19" required>
+            </div>
+            <div class="form-group">
+              <label>Nome no Cartão</label>
+              <input type="text" id="card-name" placeholder="Nome completo" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Validade</label>
+                <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5" required>
+              </div>
+              <div class="form-group">
+                <label>CVV</label>
+                <input type="text" id="card-cvv" placeholder="123" maxlength="3" required>
+              </div>
+            </div>
+            <div class="form-group" id="installments-group" style="display:none;">
+              <label>Parcelamento</label>
+              <select id="installments">
+                <option>À vista</option>
+                <option>2x sem juros</option>
+                <option>3x sem juros</option>
+                <option>6x sem juros</option>
+                <option>12x sem juros</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div id="cash-details" class="payment-details">
+          <div style="padding:15px;text-align:center;">
+            <i class="fas fa-store" style="font-size:3rem;color:var(--primary);margin-bottom:15px;"></i>
+            <h3>Pagamento no Salão</h3>
+            <p>Pague em dinheiro no dia do atendimento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="btn-back" onclick="voltarParaCarrinho()"><i class="fas fa-arrow-left"></i> Voltar</button>
+      <button class="btn-confirm" id="btn-confirm" disabled onclick="confirmarPagamento()"><i class="fas fa-check"></i> Confirmar</button>
+    </div>
+  </div>
+
+  <footer style="text-align:center;padding:24px;">
+    <strong>Salão da Netinha</strong><br>
+    CNPJ 00.000.000/0001-00 • Rua Comari, 250 — Campo Grande<br>
+    seg–sáb 09:00–19:00
+  </footer>
+
+  <div id="modal-sucesso" class="modal-custom-overlay" style="display:none;">
+    <div class="modal-custom-content">
+      <div style="font-size:4rem;color:#10b981;margin-bottom:20px;"><i class="fas fa-check-circle"></i></div>
+      <h2 style="color:var(--primary);margin-bottom:15px;">Pagamento Confirmado!</h2>
+      <p style="font-size:1.1rem;">Obrigado, <span id="cliente-nome"></span>!</p>
+      <button class="modal-custom-btn" onclick="finalizarEVoltar()">Voltar</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <script src="../scripts/mercadopago.js"></script>
+  <script src="../scripts/mercadopago-cartao.js"></script>
+  <script src="../scripts/pagamento.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "srv-01",
+    "nome": "Corte Feminino",
+    "preco": 45.00,
+    "duracao": "45min",
+    "categoria": "cabelos",
+    "imagem": "https://pvbeauty.com.br/wp-content/uploads/2024/08/corte-de-cabelo-long-bob-feminino-pv-beauty-04.webp"
+  },
+  {
+    "id": "srv-02",
+    "nome": "Corte Masculino",
+    "preco": 0.01,
+    "duracao": "30min",
+    "categoria": "cabelos",
+    "imagem": "https://img77.uenicdn.com/image/upload/v1571073633/business/549c1370b87747a799fef09f33279777.jpg"
+  },
+  {
+    "id": "srv-03",
+    "nome": "Escova e Penteado",
+    "preco": 60.00,
+    "duracao": "50min",
+    "categoria": "cabelos",
+    "imagem": "https://i.pinimg.com/564x/3b/f8/f3/3bf8f30a48c3108d9c8414eca8a32315.jpg"
+  },
+  {
+    "id": "srv-04",
+    "nome": "Progressiva ",
+    "preco": 90.00,
+    "duracao": "90min",
+    "categoria": "cabelos",
+    "imagem": "https://img.freepik.com/fotos-gratis/mulher-arrumando-o-cabelo-no-salao-de-beleza_23-2149167395.jpg?semt=ais_hybrid&w=740&q=80"
+  },
+  {
+    "id": "srv-05",
+    "nome": "Hidratação Capilar",
+    "preco": 70.00,
+    "duracao": "60min",
+    "categoria": "tratamentos",
+    "imagem": "https://www.lacesandhair.com.br/wp-content/uploads/2024/07/imagem-ilustrativa-de-aplicacao-do-tratamento-S.O.S-1024x676.webp"
+  },
+  {
+    "id": "srv-06",
+    "nome": "Manicure & Pedicure",
+    "preco": 50.00,
+    "duracao": "60min",
+    "categoria": "unhas",
+    "imagem": "https://wordpress-cms-gc-prod-assets.quero.space/uploads/2023/11/mulher-fazendo-as-unhas-de-uma-cliente-1-scaled.jpg"
+  },
+  {
+    "id": "srv-07",
+    "nome": "Alongamento de Unhas em Gel",
+    "preco": 120.00,
+    "duracao": "120min",
+    "categoria": "unhas",
+    "imagem": "https://www.alegretetudo.com.br/wp-content/uploads/2021/12/alegretetudo-o-alongamento-de-unhas-que-esta-encantando-as-mulheres-unhas.vipzz-1unhas-decoradas-fim-de-ano.png"
+  },
+  {
+    "id": "srv-08",
+    "nome": "Design de Sobrancelhas",
+    "preco": 30.00,
+    "duracao": "30min",
+    "categoria": "estetica",
+    "imagem": "https://www.ro.senac.br/wp-content/uploads/2020/09/design-de-sobrancelhas-com-hena.jpg"
+  },
+  {
+    "id": "srv-09",
+    "nome": "Depilação Completa",
+    "preco": 90.00,
+    "duracao": "90min",
+    "categoria": "estetica",
+    "imagem": "https://pellomenos.com.br/wp-content/uploads/2021/03/150-2.png"
+  },
+
+  {
+    "id": "srv-10",
+    "nome": "Limpeza de Pele",
+    "preco": 70.00,
+    "duracao": "60min",
+    "categoria": "estetica",
+    "imagem": "https://negociosdebeleza.beautyfair.com.br/wp-content/uploads/2022/01/limpeza-de-pele-1.png"
+  },
+
+  {
+    "id": "srv-11",
+    "nome": "Maquiagem social",
+    "preco": 50.00,
+    "duracao": "30min",
+    "categoria": "Maquiagem",
+    "imagem": "https://i.pinimg.com/originals/a1/9e/0e/a19e0eaf837c9de3d6c77b680715cd75.jpg"
+  },
+  {
+    "id": "srv-12",
+    "nome": "Maquiagem Profissional",
+    "preco": 100.00,
+    "duracao": "50min",
+    "categoria": "Maquiagem",
+    "imagem": "https://i.pinimg.com/564x/eb/f7/7c/ebf77c27c67c34f6fbf97a69a08f9c72.jpg"
+  }
+]

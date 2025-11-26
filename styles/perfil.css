@@ -1,0 +1,387 @@
+/* PERFIL DO USUÁRIO */
+.perfil-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+  background: linear-gradient(135deg, #f8c6da 0%, #e66ba6 100%);
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(230, 107, 166, 0.3);
+}
+
+.perfil-avatar {
+  font-size: 100px;
+  color: white;
+  opacity: 0.9;
+}
+
+.perfil-info {
+  flex: 1;
+}
+
+.perfil-info h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.perfil-info p {
+  font-size: 16px;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.btn-edit {
+  background: white;
+  color: #e66ba6;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ABAS */
+.perfil-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-btn:hover {
+  color: #e66ba6;
+}
+
+.tab-btn.active {
+  color: #e66ba6;
+  border-bottom-color: #e66ba6;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.content-header {
+  margin-bottom: 30px;
+}
+
+.content-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 16px;
+}
+
+/* LISTA DE COMPRAS */
+.compras-lista {
+  display: grid;
+  gap: 20px;
+}
+
+.compra-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border-left: 5px solid #e66ba6;
+}
+
+.compra-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.compra-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px dashed #f0f0f0;
+}
+
+.compra-id {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}
+
+.compra-status {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-aprovado {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-pendente {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-cancelado {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.compra-info {
+  display: grid;
+  gap: 12px;
+}
+
+.info-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: #555;
+}
+
+.info-linha i {
+  color: #e66ba6;
+  width: 20px;
+}
+
+.info-linha strong {
+  color: #333;
+}
+
+.compra-itens {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.compra-itens h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.item-servico {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.compra-total {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e66ba6;
+}
+
+.btn-ver-detalhes {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #e66ba6, #f8c6da);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-ver-detalhes:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(230, 107, 166, 0.3);
+}
+
+/* LISTA DE AGENDAMENTOS */
+.agendamentos-lista {
+  display: grid;
+  gap: 20px;
+}
+
+.agendamento-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border-left: 5px solid #f084b7;
+}
+
+.agendamento-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.agendamento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.agendamento-servico {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.agendamento-info {
+  display: grid;
+  gap: 12px;
+}
+
+.agendamento-actions {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-reagendar {
+  flex: 1;
+  padding: 10px;
+  background: #e66ba6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-reagendar:hover {
+  background: #d55a95;
+}
+
+.btn-cancelar {
+  flex: 1;
+  padding: 10px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+  background: #c82333;
+}
+
+/* MENSAGEM VAZIA */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+}
+
+.empty-state i {
+  font-size: 80px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: #999;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .perfil-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .perfil-avatar {
+    font-size: 80px;
+  }
+
+  .perfil-info h1 {
+    font-size: 24px;
+  }
+
+  .perfil-tabs {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tab-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  .compra-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .agendamento-actions {
+    flex-direction: column;
+  }
+}
