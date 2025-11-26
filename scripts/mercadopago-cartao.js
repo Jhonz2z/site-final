@@ -22,10 +22,22 @@ function inicializarMercadoPago() {
 
   try {
     mp = new MercadoPago(PUBLIC_KEY);
-    console.log('✅ Mercado Pago SDK inicializado');
+    console.log('✅ Mercado Pago SDK inicializado com sucesso!');
+    return true;
   } catch (error) {
     console.error('❌ Erro ao inicializar Mercado Pago:', error);
+    return false;
   }
+}
+
+// Inicializar automaticamente quando o script carregar
+if (typeof MercadoPago !== 'undefined') {
+  inicializarMercadoPago();
+} else {
+  console.warn('⚠️ SDK do Mercado Pago ainda não carregou. Tentando novamente...');
+  window.addEventListener('load', () => {
+    setTimeout(inicializarMercadoPago, 500);
+  });
 }
 
 // =============================================
@@ -37,8 +49,10 @@ window.processarPagamentoCartao = async function(paymentMethodId) {
   if (!mp) {
     if (typeof mostrarModal === 'function') {
       mostrarModal('Erro: Mercado Pago não inicializado. Configure a Public Key.', 'fa-exclamation-circle');
+    } else if (typeof mostrarModalMensagem === 'function') {
+      mostrarModalMensagem('Erro: Mercado Pago não inicializado. Configure a Public Key.');
     } else {
-      alert('Erro: Mercado Pago não inicializado. Configure a Public Key.');
+      console.error('Erro: Mercado Pago não inicializado. Configure a Public Key.');
     }
     return;
   }
@@ -65,8 +79,10 @@ window.processarPagamentoCartao = async function(paymentMethodId) {
   if (!form || !form.checkValidity()) {
     if (typeof mostrarModal === 'function') {
       mostrarModal('Por favor, preencha todos os dados do cartão corretamente.', 'fa-exclamation-circle');
+    } else if (typeof mostrarModalMensagem === 'function') {
+      mostrarModalMensagem('Por favor, preencha todos os dados do cartão corretamente.');
     } else {
-      alert('Por favor, preencha todos os dados do cartão corretamente.');
+      console.error('Por favor, preencha todos os dados do cartão corretamente.');
     }
     form.reportValidity();
     return;
@@ -95,22 +111,29 @@ window.processarPagamentoCartao = async function(paymentMethodId) {
     console.log('✅ Token criado:', cardToken);
 
     // Enviar para o backend
-    const response = await fetch(`${API_URL}/criar-pagamento-cartao`, {
+    const API_ENDPOINT = window.location.hostname === 'localhost' 
+      ? 'http://localhost:3000/api/mercadopago/processar-pagamento'
+      : '/api/mercadopago/processar-pagamento';
+    
+    console.log('📤 Enviando para:', API_ENDPOINT);
+    
+    const response = await fetch(API_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        valor: total.toFixed(2),
-        email: usuarioLogado ? usuarioLogado.email : 'cliente@email.com',
-        nome: usuarioLogado ? usuarioLogado.nome : 'Cliente',
         token: cardToken.id,
-        installments: installments,
-        paymentMethodId: paymentMethodId
+        transaction_amount: total.toFixed(2),
+        description: `Serviços do Salão - ${carrinho.map(i => i.nome).join(', ')}`,
+        email: usuarioLogado ? usuarioLogado.email : 'cliente@email.com',
+        payment_method_id: paymentMethodId,
+        installments: installments
       })
     });
 
     const data = await response.json();
+    console.log('📥 Resposta do servidor:', data);
 
-    if (data.success && data.approved) {
+    if (data.status === 'approved') {
       console.log('✅ Pagamento aprovado!', data);
       
       // Salvar no histórico de compras
@@ -134,19 +157,25 @@ window.processarPagamentoCartao = async function(paymentMethodId) {
       
       // Redirecionar para agendamento
       setTimeout(() => {
-        window.location.href = '../index.html#agendamento';
+        window.location.href = 'index.html#agendamento';
       }, 2000);
 
-    } else if (data.success && !data.approved) {
-      // Pagamento não aprovado
+    } else if (data.status === 'pending' || data.status === 'in_process') {
+      // Pagamento pendente
       mostrarLoading(false);
       if (typeof mostrarModal === 'function') {
-        mostrarModal(`Pagamento não aprovado: ${data.statusDetail || 'Verifique os dados do cartão'}`, 'fa-times-circle');
-      } else {
-        alert(`Pagamento não aprovado: ${data.statusDetail || 'Verifique os dados do cartão'}`);
+        mostrarModal(`Pagamento em processamento: ${data.status_detail || 'Aguardando confirmação'}`, 'fa-clock');
+      } else if (typeof mostrarModalMensagem === 'function') {
+        mostrarModalMensagem(`Pagamento em processamento: ${data.status_detail || 'Aguardando confirmação'}`);
       }
     } else {
-      throw new Error(data.error || 'Erro ao processar pagamento');
+      // Pagamento rejeitado
+      mostrarLoading(false);
+      if (typeof mostrarModal === 'function') {
+        mostrarModal(`Pagamento não aprovado: ${data.status_detail || 'Verifique os dados do cartão'}`, 'fa-times-circle');
+      } else if (typeof mostrarModalMensagem === 'function') {
+        mostrarModalMensagem(`Pagamento não aprovado: ${data.status_detail || 'Verifique os dados do cartão'}`);
+      }
     }
 
   } catch (error) {
@@ -154,8 +183,10 @@ window.processarPagamentoCartao = async function(paymentMethodId) {
     mostrarLoading(false);
     if (typeof mostrarModal === 'function') {
       mostrarModal('Erro ao processar pagamento com cartão. Verifique os dados e tente novamente.', 'fa-exclamation-circle');
+    } else if (typeof mostrarModalMensagem === 'function') {
+      mostrarModalMensagem('Erro ao processar pagamento com cartão. Verifique os dados e tente novamente.');
     } else {
-      alert('Erro ao processar pagamento com cartão. Verifique os dados e tente novamente.');
+      console.error('Erro ao processar pagamento com cartão. Verifique os dados e tente novamente.');
     }
   }
 };

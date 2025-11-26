@@ -1,7 +1,6 @@
-// API URL
-const API_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:3000'
-  : window.location.origin;
+// API URL - desabilitar API em localhost
+const USE_API = window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1');
+const API_URL = window.location.origin;
 
 // cria/garante container de mensagem abaixo do botão dentro do form
 function ensureMessageContainer(formId, containerId) {
@@ -67,6 +66,31 @@ async function cadastrar() {
     return;
   }
 
+  // Se estiver em localhost, usa localStorage
+  if (!USE_API) {
+    let usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    
+    if (usuarios.find(u => u.email === email)) {
+      showFormMessage('cadastro', "Este e-mail já está cadastrado.", true);
+      return;
+    }
+    
+    usuarios.push({ nome, email, telefone, senha });
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    
+    showFormMessage('cadastro', "Cadastro realizado com sucesso!", false, 1400);
+    
+    document.getElementById('nomeCadastro').value = '';
+    document.getElementById('emailCadastro').value = '';
+    document.getElementById('telefoneCadastro').value = '';
+    document.getElementById('senhaCadastro').value = '';
+    
+    setTimeout(() => {
+      mostrarLogin();
+    }, 1400);
+    return;
+  }
+
   try {
     const response = await fetch(`${API_URL}/api/auth/register`, {
       method: 'POST',
@@ -108,6 +132,29 @@ async function login() {
     return;
   }
 
+  // Se estiver em localhost, usa localStorage
+  if (!USE_API) {
+    const usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+    
+    if (usuario) {
+      localStorage.setItem('usuarioLogado', JSON.stringify({
+        nome: usuario.nome,
+        email: usuario.email,
+        telefone: usuario.telefone || ''
+      }));
+      
+      showFormMessage('login', "Login realizado! Redirecionando...", false);
+      
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
+    } else {
+      showFormMessage('login', "E-mail ou senha incorretos.", true);
+    }
+    return;
+  }
+
   try {
     const response = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
@@ -125,7 +172,7 @@ async function login() {
       showFormMessage('login', "Login realizado! Redirecionando...", false);
       
       setTimeout(() => {
-        window.location.href = '../index.html';
+        window.location.href = 'index.html';
       }, 500);
     } else {
       showFormMessage('login', data.error || "E-mail ou senha incorretos.", true);

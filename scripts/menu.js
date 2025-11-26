@@ -29,6 +29,32 @@ document.addEventListener('DOMContentLoaded', function() {
     sidebarOverlay.addEventListener('click', closeMenu);
   }
   
+  // Botão agendar horário - rola até a seção de agendamento
+  const sidebarAgendamento = document.getElementById('sidebar-agendamento');
+  if (sidebarAgendamento) {
+    sidebarAgendamento.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeMenu();
+      
+      // Verificar se estamos na página index.html
+      const isIndexPage = window.location.pathname.includes('index.html') || 
+                          window.location.pathname.endsWith('/');
+      
+      if (isIndexPage) {
+        // Se estamos na home, apenas rola até a seção
+        setTimeout(() => {
+          const agendamentoSection = document.getElementById('agendamento');
+          if (agendamentoSection) {
+            agendamentoSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
+      } else {
+        // Se estamos em outra página, redireciona para index.html
+        window.location.href = 'index.html#agendamento';
+      }
+    });
+  }
+  
   // Botão carrinho do menu lateral
   const sidebarCarrinho = document.querySelector('.sidebar-item[onclick="toggleCarrinho()"]');
   if (sidebarCarrinho) {
@@ -47,48 +73,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Botão agendar horário - redireciona para home ou ancora na mesma página
-  const sidebarAgendamento = document.getElementById('sidebar-agendamento');
-  if (sidebarAgendamento) {
-    sidebarAgendamento.addEventListener('click', function(e) {
-      e.preventDefault();
-      closeMenu();
-      
-      // Verificar se estamos na página home
-      const isHomePage = window.location.pathname.endsWith('index.html') || 
-                         window.location.pathname.endsWith('/') ||
-                         window.location.pathname.includes('/Projeto/') && !window.location.pathname.includes('/pages/');
-      
-      if (isHomePage) {
-        // Se estamos na home, apenas rola até a seção
-        setTimeout(() => {
-          const agendamentoSection = document.getElementById('agendamento');
-          if (agendamentoSection) {
-            agendamentoSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 300);
-      } else {
-        // Se estamos em outra página, redireciona para home com ancora
-        window.location.href = '../index.html#agendamento';
-      }
-    });
-  }
-  
   // Botão sair do menu lateral
   const sidebarSair = document.getElementById('sidebar-sair');
   if (sidebarSair) {
     sidebarSair.addEventListener('click', function() {
+      // Sempre usar caminho relativo correto
+      const loginPath = './Login.html';
+      
       if (typeof mostrarConfirm === 'function') {
         mostrarConfirm('Deseja realmente sair?', (confirmed) => {
           if (confirmed) {
             localStorage.removeItem('usuarioLogado');
-            window.location.href = '../pages/Login.html';
+            window.location.href = loginPath;
           }
         });
       } else {
         if (confirm('Deseja realmente sair?')) {
           localStorage.removeItem('usuarioLogado');
-          window.location.href = '../pages/Login.html';
+          window.location.href = loginPath;
         }
       }
     });
@@ -100,4 +102,21 @@ document.addEventListener('DOMContentLoaded', function() {
       closeMenu();
     }
   });
+  
+  // Atualizar contador do carrinho no sidebar
+  const sidebarCartCount = document.getElementById('sidebar-cart-count');
+  function atualizarSidebarCartCount() {
+    if (sidebarCartCount) {
+      const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
+      sidebarCartCount.textContent = carrinho.length;
+    }
+  }
+  
+  atualizarSidebarCartCount();
+  
+  // Atualizar quando o carrinho mudar
+  window.addEventListener('storage', atualizarSidebarCartCount);
+  
+  // Expor função globalmente para ser chamada por script.js
+  window.atualizarSidebarCartCount = atualizarSidebarCartCount;
 });

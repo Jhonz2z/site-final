@@ -57,7 +57,7 @@ window.confirmarPagamentoPix = function() {
         localStorage.setItem('carrinho', '[]');
         localStorage.setItem('metodoPagamento', 'pix');
         // Redirecionar para agendamento
-        window.location.href = '../index.html#agendamento';
+        window.location.href = 'index.html#agendamento';
       };
     }
     
@@ -75,7 +75,7 @@ window.confirmarPagamentoPix = function() {
       
       localStorage.setItem('carrinho', '[]');
       localStorage.setItem('metodoPagamento', 'pix');
-      window.location.href = '../index.html#agendamento';
+      window.location.href = 'index.html#agendamento';
     }, 2000);
   }
 };
@@ -83,13 +83,13 @@ window.confirmarPagamentoPix = function() {
 // Voltar para o carrinho
 window.voltarParaCarrinho = function() {
   console.log('🔙 Função voltarParaCarrinho chamada - redirecionando...');
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 };
 
 // Finalizar e voltar
 window.finalizarEVoltar = function() {
   console.log('Finalizando e voltando');
-  window.location.href = '../index.html';
+  window.location.href = 'index.html';
 };
 
 // Confirmar pagamento
@@ -111,6 +111,19 @@ window.confirmarPagamento = function() {
     const form = document.getElementById('card-form');
     if (form && !form.checkValidity()) {
       form.reportValidity();
+      return;
+    }
+    
+    console.log('💳 Tentando processar pagamento com cartão...');
+    
+    // Verificar se o Mercado Pago está disponível
+    if (typeof processarPagamentoCartao !== 'function') {
+      console.error('❌ Função processarPagamentoCartao não encontrada!');
+      if (typeof mostrarModalMensagem === 'function') {
+        mostrarModalMensagem('Erro: Sistema de pagamento não disponível. Tente novamente.');
+      } else {
+        alert('Erro: Sistema de pagamento não disponível. Tente novamente.');
+      }
       return;
     }
     
@@ -152,7 +165,7 @@ window.confirmarPagamento = function() {
           // Limpar carrinho
           localStorage.setItem('carrinho', '[]');
           // Redirecionar para seção de agendamento na página inicial
-          window.location.href = '../index.html#agendamento';
+          window.location.href = 'index.html#agendamento';
         };
       }
       

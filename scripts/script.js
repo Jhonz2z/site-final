@@ -1,7 +1,9 @@
 // LOGIN OBRIGATÓRIO
 let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
 if (!usuarioLogado) {
-  window.location.href = 'pages/Login.html';
+  // Se já está em pages/, usar caminho relativo
+  const isInPagesFolder = window.location.pathname.includes('/pages/');
+  window.location.href = isInPagesFolder ? './Login.html' : 'pages/Login.html';
 }
 
 // FUNÇÕES GLOBAIS DE MODAL
@@ -67,7 +69,11 @@ window.mostrarConfirm = function(mensagem, callback) {
 };
 
 // CARREGAR SERVIÇOS (servicos.json)
-fetch(`data/servicos.json?v=${Date.now()}`)
+// Detectar se estamos em pages/ ou na raiz
+const isInPagesFolder = window.location.pathname.includes('/pages/');
+const servicosPath = isInPagesFolder ? '../data/servicos.json' : 'data/servicos.json';
+
+fetch(`${servicosPath}?v=${Date.now()}`)
   .then(res => res.json())
   .then(servicos => {
     renderServicos(servicos);
@@ -204,9 +210,9 @@ function finalizarCompra() {
     return;
   }
   
-  // Verificar se estamos em uma subpasta (pages/) ou na raiz
-  const isInSubfolder = window.location.pathname.includes('/pages/');
-  const pagamentoUrl = isInSubfolder ? '../pagamento.html' : 'pagamento.html';
+  // Verificar se estamos em pages/ ou na raiz
+  const isInPagesFolder = window.location.pathname.includes('/pages/');
+  const pagamentoUrl = isInPagesFolder ? 'pagamento.html' : 'pages/pagamento.html';
   
   // Redirecionar para página de pagamento
   window.location.href = pagamentoUrl;
@@ -242,6 +248,37 @@ function mostrarModalMensagem(mensagem) {
       modalCustom.remove();
     }
   });
+}
+
+// Função para mostrar modal de confirmação
+function mostrarConfirm(mensagem, callback) {
+  const modalCustom = document.createElement('div');
+  modalCustom.className = 'modal-custom-overlay';
+  modalCustom.innerHTML = `
+    <div class="modal-custom-content">
+      <div class="modal-custom-body">${mensagem.replace(/\n/g, '<br>')}</div>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="modal-custom-btn" style="background: #666;" onclick="this.closest('.modal-custom-overlay').remove(); (${callback})(false);">Cancelar</button>
+        <button class="modal-custom-btn" onclick="this.closest('.modal-custom-overlay').remove(); (${callback})(true);">Confirmar</button>
+      </div>
+    </div>
+  `;
+  
+  // Armazenar callback globalmente
+  const callbackId = 'callback_' + Date.now();
+  window[callbackId] = callback;
+  
+  modalCustom.innerHTML = `
+    <div class="modal-custom-content">
+      <div class="modal-custom-body">${mensagem.replace(/\n/g, '<br>')}</div>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="modal-custom-btn" style="background: #666;" onclick="window['${callbackId}'](false); this.closest('.modal-custom-overlay').remove(); delete window['${callbackId}'];">Cancelar</button>
+        <button class="modal-custom-btn" onclick="window['${callbackId}'](true); this.closest('.modal-custom-overlay').remove(); delete window['${callbackId}'];">Confirmar</button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modalCustom);
 }
 
 // Inicializar contador ao carregar página
@@ -555,94 +592,4 @@ document.addEventListener('DOMContentLoaded', function () {
       };
     });
   }
-});
-
-// MENU HAMBÚRGUER LATERAL
-document.addEventListener('DOMContentLoaded', function() {
-  const menuHamburger = document.getElementById('menu-hamburger');
-  const sidebarMenu = document.getElementById('sidebar-menu');
-  const sidebarClose = document.getElementById('sidebar-close');
-  const sidebarOverlay = document.getElementById('sidebar-overlay');
-  const sidebarCartCount = document.getElementById('sidebar-cart-count');
-  
-  // Abrir menu
-  if (menuHamburger) {
-    menuHamburger.addEventListener('click', function() {
-      menuHamburger.classList.toggle('active');
-      sidebarMenu.classList.toggle('active');
-      document.body.style.overflow = sidebarMenu.classList.contains('active') ? 'hidden' : '';
-    });
-  }
-  
-  // Fechar menu
-  function closeMenu() {
-    menuHamburger.classList.remove('active');
-    sidebarMenu.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-  
-  if (sidebarClose) {
-    sidebarClose.addEventListener('click', closeMenu);
-  }
-  
-  if (sidebarOverlay) {
-    sidebarOverlay.addEventListener('click', closeMenu);
-  }
-  
-  // Fechar menu ao clicar em links internos
-  const sidebarAgendamento = document.getElementById('sidebar-agendamento');
-  
-  if (sidebarAgendamento) {
-    sidebarAgendamento.addEventListener('click', function(e) {
-      e.preventDefault();
-      closeMenu();
-      document.getElementById('agendamento').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-  
-  // Botão carrinho do menu lateral
-  const sidebarCarrinho = document.querySelector('.sidebar-item[onclick="toggleCarrinho()"]');
-  if (sidebarCarrinho) {
-    sidebarCarrinho.removeAttribute('onclick');
-    sidebarCarrinho.addEventListener('click', function(e) {
-      e.preventDefault();
-      closeMenu();
-      setTimeout(() => {
-        toggleCarrinho();
-      }, 300);
-    });
-  }
-  
-  // Botão sair do menu lateral
-  const sidebarSair = document.getElementById('sidebar-sair');
-  if (sidebarSair) {
-    sidebarSair.addEventListener('click', function() {
-      mostrarConfirm('Deseja realmente sair?', (confirmed) => {
-        if (confirmed) {
-          localStorage.removeItem('usuarioLogado');
-          window.location.href = 'pages/Login.html';
-        }
-      });
-    });
-  }
-  
-  // Atualizar contador do carrinho no sidebar
-  function atualizarSidebarCartCount() {
-    if (sidebarCartCount) {
-      const carrinho = JSON.parse(localStorage.getItem('carrinho') || '[]');
-      sidebarCartCount.textContent = carrinho.length;
-    }
-  }
-  
-  atualizarSidebarCartCount();
-  
-  // Atualizar quando o carrinho mudar
-  window.addEventListener('storage', atualizarSidebarCartCount);
-  
-  // Fechar menu ao pressionar ESC
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && sidebarMenu.classList.contains('active')) {
-      closeMenu();
-    }
-  });
 });

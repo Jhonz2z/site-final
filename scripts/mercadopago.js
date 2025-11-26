@@ -88,8 +88,10 @@ window.criarPagamentoMercadoPago = async function() {
     mostrarLoading(false);
     if (typeof mostrarModal === 'function') {
       mostrarModal('Erro ao criar pagamento. Tente novamente.', 'fa-exclamation-circle');
+    } else if (typeof mostrarModalMensagem === 'function') {
+      mostrarModalMensagem('Erro ao criar pagamento. Tente novamente.');
     } else {
-      alert('Erro ao criar pagamento. Tente novamente.');
+      console.error('Erro ao criar pagamento. Tente novamente.');
     }
   }
 };

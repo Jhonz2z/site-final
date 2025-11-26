@@ -177,7 +177,7 @@
   <!-- HEADER -->
   <header>
     <div class="container nav">
-      <a href="../index.html" class="brand" aria-label="Página inicial">
+      <a href="index.html" class="brand" aria-label="Página inicial">
         <span class="brand-logo" aria-hidden="true">
           <img src="../img/Logo2.png" alt="Logo do Salão da Netinha" class="brand-img">
         </span>
@@ -213,7 +213,7 @@
       </div>
       
       <div class="sidebar-body">
-        <a href="../index.html" class="sidebar-item">
+        <a href="index.html" class="sidebar-item">
           <i class="fas fa-home"></i>
           <span>Início</span>
         </a>
@@ -223,15 +223,9 @@
           <span>Nossos Serviços</span>
         </a>
         
-        <a href="index.html#agendamento" class="sidebar-item">
+        <a href="#agendamento" class="sidebar-item" id="sidebar-agendamento">
           <i class="fas fa-calendar-alt"></i>
           <span>Agendar Horário</span>
-        </a>
-        
-        <a href="javascript:void(0)" class="sidebar-item" onclick="toggleCarrinho()">
-          <i class="fas fa-shopping-cart"></i>
-          <span>Carrinho</span>
-          <span class="sidebar-badge" id="sidebar-cart-count">0</span>
         </a>
         
         <a href="perfil.html" class="sidebar-item">
@@ -357,27 +351,6 @@
     </div>
   </footer>
 
-  <!-- MODAL DO CARRINHO -->
-  <div id="modal-carrinho" class="cart-modal">
-    <div class="cart-modal-content">
-      <div class="cart-modal-header">
-        <h3><i class="fas fa-shopping-cart"></i> Meu Carrinho</h3>
-        <button class="cart-close" onclick="toggleCarrinho()">×</button>
-      </div>
-      <div class="cart-modal-body" id="lista-carrinho">
-        <!-- Itens serão renderizados aqui -->
-      </div>
-      <div class="cart-modal-footer">
-        <div class="cart-total">
-          <strong>Total:</strong>
-          <span id="total-carrinho">R$ 0,00</span>
-        </div>
-        <button class="btn-finalizar" onclick="finalizarCompra()">
-          <i class="fas fa-check"></i> Finalizar Compra
-        </button>
-      </div>
-    </div>
-  </div>
 
   <script src="../scripts/menu.js"></script>
 </body>

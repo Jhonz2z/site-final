@@ -1,5 +1,38 @@
 {
+  "alias": ["projeto-nine-mocha.vercel.app"],
   "rewrites": [
+    {
+      "source": "/",
+      "destination": "/pages/index.html"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/pages/index.html"
+    },
+    {
+      "source": "/perfil.html",
+      "destination": "/pages/perfil.html"
+    },
+    {
+      "source": "/contato.html",
+      "destination": "/pages/contato.html"
+    },
+    {
+      "source": "/Sobrenos.html",
+      "destination": "/pages/Sobrenos.html"
+    },
+    {
+      "source": "/servicos.html",
+      "destination": "/pages/servicos.html"
+    },
+    {
+      "source": "/pagamento.html",
+      "destination": "/pages/pagamento.html"
+    },
+    {
+      "source": "/Login.html",
+      "destination": "/pages/Login.html"
+    },
     {
       "source": "/criar-pagamento",
       "destination": "/api/server"

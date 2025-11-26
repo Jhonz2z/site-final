@@ -21,7 +21,7 @@
     "preco": 60.00,
     "duracao": "50min",
     "categoria": "cabelos",
-    "imagem": "https://i.pinimg.com/564x/3b/f8/f3/3bf8f30a48c3108d9c8414eca8a32315.jpg"
+    "imagem": "../img/escova.jpeg"
   },
   {
     "id": "srv-04",
@@ -29,7 +29,7 @@
     "preco": 90.00,
     "duracao": "90min",
     "categoria": "cabelos",
-    "imagem": "https://img.freepik.com/fotos-gratis/mulher-arrumando-o-cabelo-no-salao-de-beleza_23-2149167395.jpg?semt=ais_hybrid&w=740&q=80"
+    "imagem": "../img/progressiva.webp"
   },
   {
     "id": "srv-05",
@@ -37,7 +37,7 @@
     "preco": 70.00,
     "duracao": "60min",
     "categoria": "tratamentos",
-    "imagem": "https://www.lacesandhair.com.br/wp-content/uploads/2024/07/imagem-ilustrativa-de-aplicacao-do-tratamento-S.O.S-1024x676.webp"
+    "imagem": "../img/progressiva.webp"
   },
   {
     "id": "srv-06",
