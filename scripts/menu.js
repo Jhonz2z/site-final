@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const sidebarClose = document.getElementById('sidebar-close');
   const sidebarOverlay = document.getElementById('sidebar-overlay');
   
+  // Configurar botão de login/logout no header
+  configurarBotaoAuth();
+  
   // Abrir menu
   if (menuHamburger) {
     menuHamburger.addEventListener('click', function() {
@@ -73,27 +76,58 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Botão sair do menu lateral
+  // Botão sair/entrar do menu lateral — se não houver usuário mostra 'Entrar' (link), se houver mostra 'Sair' (logout)
   const sidebarSair = document.getElementById('sidebar-sair');
   if (sidebarSair) {
-    sidebarSair.addEventListener('click', function() {
-      // Sempre usar caminho relativo correto
-      const loginPath = './Login.html';
+    // Remover listeners anteriores (caso existam)
+    sidebarSair.replaceWith(sidebarSair.cloneNode(true));
+    const sidebarSairNew = document.getElementById('sidebar-sair');
+
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
+    const loginPath = './Login.html';
+
+    if (!usuarioLogado) {
+      // Mostrar como Entrar (VERDE)
+      const icon = sidebarSairNew.querySelector('i');
+      const txt = sidebarSairNew.querySelector('span');
+      if (icon) icon.className = 'fas fa-sign-in-alt';
+      if (txt) txt.textContent = 'Entrar';
       
-      if (typeof mostrarConfirm === 'function') {
-        mostrarConfirm('Deseja realmente sair?', (confirmed) => {
-          if (confirmed) {
+      // Adicionar classe verde e remover classe vermelha
+      sidebarSairNew.classList.remove('sidebar-item-danger', 'sidebar-item-logout');
+      sidebarSairNew.classList.add('sidebar-item-login');
+
+      sidebarSairNew.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.href = loginPath;
+      });
+    } else {
+      // Mostrar como Sair (VERMELHO)
+      const icon = sidebarSairNew.querySelector('i');
+      const txt = sidebarSairNew.querySelector('span');
+      if (icon) icon.className = 'fas fa-sign-out-alt';
+      if (txt) txt.textContent = 'Sair';
+      
+      // Adicionar classe vermelha e remover classe verde
+      sidebarSairNew.classList.remove('sidebar-item-login');
+      sidebarSairNew.classList.add('sidebar-item-logout');
+      
+      sidebarSairNew.addEventListener('click', function() {
+        if (typeof mostrarConfirm === 'function') {
+          mostrarConfirm('Deseja realmente sair?', (confirmed) => {
+            if (confirmed) {
+              localStorage.removeItem('usuarioLogado');
+              window.location.href = loginPath;
+            }
+          });
+        } else {
+          if (confirm('Deseja realmente sair?')) {
             localStorage.removeItem('usuarioLogado');
             window.location.href = loginPath;
           }
-        });
-      } else {
-        if (confirm('Deseja realmente sair?')) {
-          localStorage.removeItem('usuarioLogado');
-          window.location.href = loginPath;
         }
-      }
-    });
+      });
+    }
   }
   
   // Fechar menu ao pressionar ESC
@@ -120,3 +154,47 @@ document.addEventListener('DOMContentLoaded', function() {
   // Expor função globalmente para ser chamada por script.js
   window.atualizarSidebarCartCount = atualizarSidebarCartCount;
 });
+
+// Função para configurar botão de login/logout no header
+function configurarBotaoAuth() {
+  const btnAuth = document.getElementById('btn-auth');
+  if (!btnAuth) return;
+  
+  const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
+  const loginPath = './Login.html';
+  
+  // Atualizar ícone e comportamento baseado no estado do usuário
+  const icon = btnAuth.querySelector('i');
+  
+  if (!usuarioLogado) {
+    // Usuário não logado - mostrar ícone de "Entrar" (VERDE)
+    if (icon) icon.className = 'fas fa-sign-in-alt';
+    btnAuth.title = 'Entrar';
+    btnAuth.className = 'btn-auth btn-login'; // Adiciona classe verde
+    
+    btnAuth.addEventListener('click', function() {
+      window.location.href = loginPath;
+    });
+  } else {
+    // Usuário logado - mostrar ícone de "Sair" (VERMELHO)
+    if (icon) icon.className = 'fas fa-sign-out-alt';
+    btnAuth.title = 'Sair';
+    btnAuth.className = 'btn-auth btn-logout'; // Adiciona classe vermelha
+    
+    btnAuth.addEventListener('click', function() {
+      if (typeof mostrarConfirm === 'function') {
+        mostrarConfirm('Deseja realmente sair?', (confirmed) => {
+          if (confirmed) {
+            localStorage.removeItem('usuarioLogado');
+            window.location.href = loginPath;
+          }
+        });
+      } else {
+        if (confirm('Deseja realmente sair?')) {
+          localStorage.removeItem('usuarioLogado');
+          window.location.href = loginPath;
+        }
+      }
+    });
+  }
+}

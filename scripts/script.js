@@ -1,10 +1,6 @@
-// LOGIN OBRIGATÓRIO
-let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
-if (!usuarioLogado) {
-  // Se já está em pages/, usar caminho relativo
-  const isInPagesFolder = window.location.pathname.includes('/pages/');
-  window.location.href = isInPagesFolder ? './Login.html' : 'pages/Login.html';
-}
+// Gerenciamento de usuário (não força login na visualização do site)
+// Mantemos a informação do usuário em uma variável global para checagens específicas
+window.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
 
 // FUNÇÕES GLOBAIS DE MODAL
 window.mostrarModal = function(mensagem, icone = 'fa-check-circle') {
