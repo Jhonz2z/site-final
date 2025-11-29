@@ -2,23 +2,29 @@
 // SERVIDOR BACKEND - INTEGRAÇÃO MERCADO PAGO
 // =============================================
 
+// Carregar variáveis de ambiente
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const { MercadoPagoConfig, Payment } = require('mercadopago');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
 
 // CONFIGURAR MERCADO PAGO
-// IMPORTANTE: Substitua pelo seu Access Token
-// USE TEST TOKEN para testar (começa com TEST-...)
-// USE ACCESS TOKEN de produção somente quando sua conta estiver ativada
+// Access Token é carregado de forma segura das variáveis de ambiente
+if (!process.env.MERCADOPAGO_ACCESS_TOKEN) {
+  console.error('❌ ERRO: MERCADOPAGO_ACCESS_TOKEN não configurado no arquivo .env');
+  process.exit(1);
+}
+
 const client = new MercadoPagoConfig({
-  accessToken: 'APP_USR-8179193987311894-112512-ba877f84e8e8a5b82dd5d639da4f8e48-1170066187',
+  accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN,
   options: { timeout: 5000 }
 });
 
