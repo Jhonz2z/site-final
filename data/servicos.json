@@ -10,7 +10,7 @@
   {
     "id": "srv-02",
     "nome": "Corte Masculino",
-    "preco": 0.01,
+    "preco": 30.00,
     "duracao": "30min",
     "categoria": "cabelos",
     "imagem": "https://img77.uenicdn.com/image/upload/v1571073633/business/549c1370b87747a799fef09f33279777.jpg"
