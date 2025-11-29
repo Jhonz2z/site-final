@@ -97,7 +97,7 @@ function carregarPerfilUsuario() {
   
   if (!usuarioLogado.nome) {
     // Se não houver usuário logado, redirecionar para login
-    window.location.href = 'login.html';
+    window.location.href = 'Login.html';
     return;
   }
 
